@@ -1,0 +1,186 @@
+/* General Styling */
+body {
+    background-color: #222;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #007bff;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+/* Add Book Button */
+.add-btn {
+    background-color: white;
+    color: #007bff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.add-btn:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+/* Main Content Centering */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centers content vertically */
+    height: 100vh; /* Takes full screen height */
+    padding-top: 80px; /* Adjusts for navbar height */
+}
+
+/* Book Container */
+.book-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center; /* Centers all book cards */
+    width: 100%;
+}
+
+/* Book Card */
+.book-card {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 80%;
+    max-width: 600px; /* Keeps cards at a good width */
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Book Cover */
+.book-cover {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+/* Book Info */
+.book-info {
+    flex: 1;
+    text-align: left;
+}
+
+.book-info h2 {
+    font-size: 20px;
+    margin: 5px 0;
+    color: #fff;
+}
+
+.book-info .author,
+.book-info .price,
+.book-info .quantity {
+    color: #ccc;
+    font-size: 15px;
+    margin: 2px 0;
+}
+
+/* Buttons */
+.btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* Edit & Delete Buttons */
+.edit-btn,
+.delete-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: black;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        padding: 100px 10px;
+    }
+
+    .book-card {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+
+    .book-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 20px;
+    }
+
+    .book-cover {
+        margin: 0 0 10px 0;
+    }
+
+    .btn-group {
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .edit-btn,
+    .delete-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
