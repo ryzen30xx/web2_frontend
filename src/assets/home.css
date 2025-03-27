@@ -1,17 +1,23 @@
 /* General Styling */
-body {
-    background-color: #222;
-    color: white;
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+
+
 /* Navbar */
 .navbar {
     background-color: #007bff;
-    color: white;
+    color: #fff;
     font-size: 20px;
     font-weight: bold;
     width: 100%;
@@ -23,20 +29,57 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Right section of navbar (Search + Add button) */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Search Bar */
+.search-input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 180px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.search-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
 }
 
 /* Add Book Button */
 .add-btn {
-    background-color: white;
+    background-color: #fff;
     color: #007bff;
-    padding: 10px 20px;
+    padding: 6px 12px;
+    font-size: 14px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .add-btn:hover {
@@ -44,14 +87,10 @@ body {
     transform: scale(1.05);
 }
 
-/* Main Content Centering */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Centers content vertically */
-    height: 100vh; /* Takes full screen height */
-    padding-top: 80px; /* Adjusts for navbar height */
+/* Main Content */
+.content {
+    padding-top: 80px;
+    text-align: center;
 }
 
 /* Book Container */
@@ -59,7 +98,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    align-items: center; /* Centers all book cards */
+    align-items: center;
     width: 100%;
 }
 
@@ -74,7 +113,7 @@ body {
     justify-content: space-between;
     transition: transform 0.2s, box-shadow 0.2s;
     width: 80%;
-    max-width: 600px; /* Keeps cards at a good width */
+    max-width: 600px;
 }
 
 .book-card:hover {
@@ -103,14 +142,6 @@ body {
     color: #fff;
 }
 
-.book-info .author,
-.book-info .price,
-.book-info .quantity {
-    color: #ccc;
-    font-size: 15px;
-    margin: 2px 0;
-}
-
 /* Buttons */
 .btn-group {
     display: flex;
@@ -125,17 +156,17 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.3s, transform 0.2s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .edit-btn {
     background-color: #ffc107;
-    color: black;
+    color: #000;
 }
 
 .delete-btn {
     background-color: #dc3545;
-    color: white;
+    color: #fff;
 }
 
 .edit-btn:hover,
@@ -145,42 +176,618 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-    .container {
-        padding: 100px 10px;
-    }
-
-    .book-card {
-        max-width: 90%;
-    }
-}
-
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         text-align: center;
-        padding: 15px;
+        padding: 10px;
+    }
+
+    .navbar-right {
+        margin-top: 10px;
+    }
+
+    .search-input {
+        width: 100%;
     }
 
     .book-card {
         flex-direction: column;
-        text-align: center;
-        align-items: center;
-        padding: 20px;
+        align-items: flex-start;
     }
 
     .book-cover {
-        margin: 0 0 10px 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* ===== LOGIN PAGE STYLING ===== */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    font-family: 'Arial', sans-serif;
+}
+
+.login-box {
+    background: white;
+    padding: 30px;
+    width: 360px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+}
+
+.subtitle {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #444;
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+    outline: none;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.login-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.login-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #5a0fbf, #1f6ae6);
+    transform: translateY(-2px);
+}
+
+.error-message {
+    color: red;
+    margin-top: 15px;
+    font-size: 13px;
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.register-link a {
+    color: #2575fc;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========== GLOBAL STYLES ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #222;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.add-btn {
+    background-color: #fff;
+    color: #007bff;
+    padding: 6px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-btn:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
+}
+
+/* ========== FORM PANEL ========== */
+.form-panel {
+    width: 60%;
+    max-width: 800px;
+    min-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    background: #3a3a3a;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+textarea {
+    resize: none;
+    height: 150px;
+}
+
+input:focus, textarea:focus {
+    background-color: #333;
+    box-shadow: 0 0 5px #007bff;
+}
+
+/* ========== BUTTONS ========== */
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 48%;
+    transition: background 0.3s;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 48%;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1024px) {
+    .form-panel {
+        width: 80%;
+        min-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-panel {
+        width: 90%;
+        min-width: unset;
+        padding: 20px;
     }
 
     .btn-group {
-        justify-content: center;
-        flex-direction: row;
+        flex-direction: column;
     }
 
-    .edit-btn,
-    .delete-btn {
-        padding: 8px 12px;
-        font-size: 14px;
+    .submit-btn, .cancel-btn {
+        width: 100%;
     }
 }
+
+/* ========== BOOK CONTAINER ========== */
+.book-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+.book-card {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 80%;
+    max-width: 600px;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.book-cover {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.book-info {
+    flex: 1;
+    text-align: left;
+}
+
+.book-info h2 {
+    font-size: 20px;
+    margin: 5px 0;
+    color: #fff;
+}
+
+/* ========== EDIT & DELETE BUTTONS ========== */
+.edit-btn, .delete-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit-btn {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.edit-btn:hover, .delete-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+/* Form Panel */
+.form-panel {
+    width: 60%;
+    max-width: 800px;
+    min-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    background: #3a3a3a;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Title */
+  .title {
+    text-align: center;
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Fields */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  /* Description Field */
+  textarea {
+    resize: none;
+    height: 150px;
+  }
+  
+  /* Input Focus Effect */
+  input:focus,
+  textarea:focus {
+    background-color: #333;
+    box-shadow: 0 0 5px #007bff;
+  }
+  
+  /* Buttons */
+  .btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .submit-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 48%;
+    transition: background 0.3s;
+  }
+  
+  .cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 48%;
+    transition: background 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #218838;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #c82333;
+  }
+  
+  /* Responsive Fix */
+  @media (max-width: 1024px) {
+    .form-panel {
+      width: 80%;
+      min-width: 500px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .form-panel {
+      width: 90%;
+      min-width: unset;
+      padding: 20px;
+    }
+  
+    .btn-group {
+      flex-direction: column;
+    }
+  
+    .submit-btn,
+    .cancel-btn {
+      width: 100%;
+    }
+  }
+  
+/* Form Panel */
+.form-panel {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    background: #3a3a3a;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+/* Title */
+.title {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Form Fields */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #222;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+/* Description Field */
+textarea {
+    resize: none;
+    height: 150px;
+}
+
+/* Button Group */
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Buttons */
+.submit-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 48%;
+    transition: background 0.3s;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 48%;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+
+span {
+    color: #000000;
+    cursor: pointer;
+}
+

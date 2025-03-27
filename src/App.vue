@@ -1,27 +1,34 @@
 <template>
   <div class="app-container">
-    <nav class="navbar">
-      Book Stores Management
-      <button @click="goToAddBook" class="add-btn">Add Book</button>
-    </nav>
-
   </div>
   <router-view />
 </template>
 
 <script>
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+import { onMounted, watch } from 'vue';
 
 export default {
   setup() {
     const router = useRouter();
+    const route = useRoute();
 
-    const goToAddBook = () => {
-      router.push('/addbook'); // Redirects to AddBook.vue
+    const publicPages = ['/landing', '/login'];
+
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+
+      if (token && publicPages.includes(route.path)) {
+        router.push('/dashboard');
+      } else if (!token && !publicPages.includes(route.path)) {
+        router.push('/landing');
+      }
     };
 
-    return { goToAddBook };
+    onMounted(checkAuth);
+    watch(route, checkAuth);
+
+    return {};
   }
 };
 </script>
-
