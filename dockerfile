@@ -1,22 +1,23 @@
+# Use a lightweight Node.js image
 FROM node:lts-alpine
 
-# install simple http server for serving static content
-RUN npm install -g http-server
-
-# make the 'app' folder the current working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# copy both 'package.json' and 'package-lock.json' (if available)
+# Copy package.json and package-lock.json first (for caching layers)
 COPY package*.json ./
 
-# install project dependencies
+# Install dependencies
 RUN npm install
 
-# copy project files and folders to the current working directory (i.e. 'app' folder)
+# Copy all project files
 COPY . .
 
-# build app for production with minification
+# Build the Vue app for production
 RUN npm run build
 
+# Expose port 8080 (default port for Vite preview or Vue apps)
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+
+# Run the app in preview mode correctly
+CMD ["npm", "run", "preview"]
